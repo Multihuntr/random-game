@@ -1,21 +1,21 @@
 =============== 
 Unity generated
 ===============
-KineticAstroMiner/Temp/
-KineticAstroMiner/Library/
-KineticAstroMiner/Builds/
+Random Game/Temp/
+Random Game/Library/
+Random Game/Builds/
 
 =====================================
 Visual Studio / MonoDevelop generated
 =====================================
-KineticAstroMiner/ExportedObj/
-KineticAstroMiner/obj/
+Random Game/ExportedObj/
+Random Game/obj/
 *.svd
 *.userprefs
-KineticAstroMiner/*.csproj
+Random Game/*.csproj
 *.pidb
 *.suo
-KineticAstroMiner/*.sln
+Random Game/*.sln
 *.user
 *.unityproj
 *.booproj
