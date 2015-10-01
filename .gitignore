@@ -1,21 +1,21 @@
 =============== 
 Unity generated
 ===============
-Random\ Game/Temp/
-Random\ Game/Library/
-Random\ Game/Builds/
+"Random Game/Temp/"
+"Random Game/Library/"
+"Random Game/Builds/"
 
 =====================================
 Visual Studio / MonoDevelop generated
 =====================================
-Random\ Game/ExportedObj/
-Random\ Game/obj/
+"Random Game/ExportedObj/"
+"Random Game/obj/"
 *.svd
 *.userprefs
-Random\ Game/*.csproj
+"Random Game/*.csproj"
 *.pidb
 *.suo
-Random\ Game/*.sln
+"Random Game/*.sln"
 *.user
 *.unityproj
 *.booproj
