@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour {
 
     bool isGrounded()
     {
-        return Physics2D.Raycast(transform.position, Vector2.down, jumpTriggerHeight, 1 << 8);
+        return Physics2D.Raycast(transform.position, Vector2.down, jumpTriggerHeight);
     }
 	
 	void LateUpdate () {
@@ -39,6 +39,7 @@ public class PlayerControl : MonoBehaviour {
         {
             jumpHeld = false;
         }
+        Debug.Log(Input.GetAxis("Vertical"));
         rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(targXVel, targYVel), runSmoothing);
     }
 }

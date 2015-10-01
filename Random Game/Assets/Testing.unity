@@ -185,7 +185,7 @@ GameObject:
   - 61: {fileID: 186373942}
   - 50: {fileID: 186373941}
   - 114: {fileID: 186373946}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PseudoPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8ab08ed66cdc83844973916924fd5f3a, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 8ab08ed66cdc83844973916924fd5f3a, type: 3}
@@ -372,7 +372,7 @@ GameObject:
   - 4: {fileID: 908120670}
   - 61: {fileID: 908120669}
   - 61: {fileID: 908120668}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - 4: {fileID: 1884388900}
   - 61: {fileID: 1884388899}
   - 61: {fileID: 1884388898}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
