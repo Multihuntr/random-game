@@ -1,45 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : EntityControl
+{
 
-    Rigidbody2D rb;
-    Mesh mesh;
+	private Mesh mesh;
 
-    public float runSpd;
-    public float runSmoothing;
-    public float jumpHeight;
-    public float jumpTriggerHeight;
+	public float runSpd;
+	public float jumpSpd;
+	public float jumpTriggerHeight;
 
-    private bool jumpHeld;
+	private bool jumpHeld;
     
-    void Start () {
-        rb = GetComponent<Rigidbody2D>();
-        mesh = GetComponent<MeshFilter>().mesh;
-        jumpTriggerHeight += mesh.bounds.size.y;
+	void Start ()
+	{
+		mesh = GetComponent<MeshFilter> ().mesh;
+		jumpHeld = false;
+		width = mesh.bounds.size.x; // These values might not be static in final production
+		height = mesh.bounds.size.y;
 	}
-
-    bool isGrounded()
-    {
-        return Physics2D.Raycast(transform.position, Vector2.down, jumpTriggerHeight);
-    }
 	
-	void LateUpdate () {
-        float targXVel = Input.GetAxis("Horizontal") != 0 ? Input.GetAxis("Horizontal")*runSpd : 0;
-        float targYVel = rb.velocity.y;
+	void Update ()
+	{
+		// Calculate initial movement
+		float xVel = Input.GetAxis ("Horizontal") != 0 ? Input.GetAxis ("Horizontal") * runSpd : 0;
 
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            if (isGrounded() && !jumpHeld)
-            {
-                targYVel = jumpHeight;
-            }
-            jumpHeld = true;
-        } else
-        {
-            jumpHeld = false;
-        }
-        Debug.Log(Input.GetAxis("Vertical"));
-        rb.velocity = Vector2.Lerp(rb.velocity, new Vector2(targXVel, targYVel), runSmoothing);
-    }
+		Vector2 m = calcMoveIncSlope (xVel);
+
+
+		// Add Jumping Movement
+		if (Input.GetAxis ("Vertical") > 0) {
+			if (!jumpHeld && distToYThing (Vector2.down) < jumpTriggerHeight) {
+				m = new Vector2 (m.x, jumpSpd);
+			}
+			jumpHeld = true;
+		} else {
+			jumpHeld = false;
+		}
+
+
+		// Apply movement
+		float x = transform.position.x;
+		float y = transform.position.y;
+
+		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
+		yVel = m.y;
+	}
 }
