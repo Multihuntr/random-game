@@ -25,9 +25,9 @@ public class EntityControl : MonoBehaviour
 			pos = transform.position;
 		}
 		// Check 3 positions. Is the middle touching? Are either of the edges touching.
-		return Physics2D.Raycast (pos.Value, dir, maxDist).collider != null
-			|| Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, maxDist).collider != null
-			|| Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, maxDist).collider != null;
+		return Physics2D.Raycast (pos.Value, dir, maxDist, 1).collider != null
+			|| Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, maxDist, 1).collider != null
+			|| Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, maxDist, 1).collider != null;
 	}
 	
 	bool hittingInY (Vector2 dir)
@@ -66,10 +66,10 @@ public class EntityControl : MonoBehaviour
 		}
 
 		// Ray cast three times along the edge
-		RaycastHit2D left = Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir);
-		RaycastHit2D mid = Physics2D.Raycast (new Vector2 (pos.Value.x, pos.Value.y), dir);
-		RaycastHit2D right = Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir);
-		
+		RaycastHit2D left = Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, Mathf.Infinity, 1);
+		RaycastHit2D mid = Physics2D.Raycast (new Vector2 (pos.Value.x, pos.Value.y), dir, Mathf.Infinity, 1);
+		RaycastHit2D right = Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, Mathf.Infinity, 1);
+
 		// You want the minimum, because of ledges and overhangs and stuff.
 		return Mathf.Min (left.distance, mid.distance, right.distance);
 	}
@@ -92,8 +92,8 @@ public class EntityControl : MonoBehaviour
 		Vector2 oneStepUp = new Vector2 (bottomStep.x, bottomStep.y + 0.1f);
 
 		// It raycasts a distance for which the angle would have to be less than 1 degree not to reach.
-		RaycastHit2D bottomStepHit = Physics2D.Raycast (bottomStep, dir, width / 2 + 6, 1 << 8);
-		RaycastHit2D oneStepUpHit = Physics2D.Raycast (oneStepUp, dir, width / 2 + 6, 1 << 8);
+		RaycastHit2D bottomStepHit = Physics2D.Raycast (bottomStep, dir, width / 2 + 0.01f, 1 << 8);
+		RaycastHit2D oneStepUpHit = Physics2D.Raycast (oneStepUp, dir, width / 2 + 6.01f, 1 << 8);
 
 		if (oneStepUpHit.distance == 0) {
 			return 90;
@@ -159,6 +159,7 @@ public class EntityControl : MonoBehaviour
 			Vector2 dir = new Vector2 (Mathf.Sign (xVel), 0);
 			float slopeAngle = getSlopeAngle (dir);
 			if (slopeAngle != 0 && slopeAngle < 70 * Mathf.Deg2Rad) {
+				Debug.Log ("Sloping?");
 
 				setXVel = xVel;
 				setYVel = Mathf.Tan (slopeAngle) * xVel;
