@@ -22,6 +22,7 @@ public class PlayerControl : EntityControl
 	
 	void Update ()
 	{
+
 		// Calculate initial movement
 		float xVel = Input.GetAxis ("Horizontal") != 0 ? Input.GetAxis ("Horizontal") * runSpd : 0;
 
@@ -45,5 +46,13 @@ public class PlayerControl : EntityControl
 
 		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
 		yVel = m.y;
+
+	}
+
+	void OnLevelWasLoaded (int level)
+	{
+		if (!GameState.newGame) {
+			transform.position = GameState.currentSave.getLoadPos ();
+		}
 	}
 }
