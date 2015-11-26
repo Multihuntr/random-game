@@ -3,25 +3,19 @@ using System.Collections;
 
 public class Checkpoint : MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start ()
+	public Vector2 getPos ()
 	{
-	
+		return (Vector2)transform.position;
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.gameObject.tag == "Player") {
-			Checkpoint prev = GameState.checkpoint;
-			if (prev != null) {
-				prev.reset ();
-			}
 			setActive ();
 		}
 	}
 
-	void reset ()
+	public void reset ()
 	{
 		ParticleSystem ps = GetComponent<ParticleSystem> ();
 		ps.startColor = Color.white;
@@ -31,6 +25,6 @@ public class Checkpoint : MonoBehaviour
 	{
 		ParticleSystem ps = GetComponent<ParticleSystem> ();
 		ps.startColor = Color.yellow;
-		GameState.checkpoint = this;
+		GameState.save (this);
 	}
 }
