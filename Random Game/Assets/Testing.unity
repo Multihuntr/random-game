@@ -184,22 +184,39 @@ GameObject:
   - 23: {fileID: 186373943}
   - 61: {fileID: 186373942}
   - 114: {fileID: 186373946}
+  - 50: {fileID: 186373941}
   m_Layer: 2
-  m_Name: PseudoPlayer
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!50 &186373941
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 186373940}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &186373942
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 186373940}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -285,6 +302,68 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &382985371
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4.44000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.03999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 492868, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19850314, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19850314, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 4292585812
+      objectReference: {fileID: 0}
+    - target: {fileID: 19850314, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.key0.rgba
+      value: 4292585812
+      objectReference: {fileID: 0}
+    - target: {fileID: 19850314, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.key1.rgba
+      value: 14395732
+      objectReference: {fileID: 0}
+    - target: {fileID: 19850314, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fc51dc64da7cee847b9f01eb9a819b11, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &587341471
 Prefab:
   m_ObjectHideFlags: 0
@@ -469,7 +548,7 @@ GameObject:
   - 4: {fileID: 1884388900}
   - 61: {fileID: 1884388899}
   - 61: {fileID: 1884388898}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
