@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerControl : EntityControl
@@ -45,5 +46,18 @@ public class PlayerControl : EntityControl
 
 		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
 		yVel = m.y;
+
+	}
+
+	void OnLevelWasLoaded (int level)
+	{
+		if (!GameState.newGame) {
+			transform.position = GameState.currentSave.getLoadPos ();
+		}
+	}
+
+	public void injured ()
+	{
+		// play injury animation
 	}
 }

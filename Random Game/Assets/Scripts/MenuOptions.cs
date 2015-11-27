@@ -4,15 +4,27 @@ using System.Collections;
 
 public class MenuOptions : MonoBehaviour
 {
+	void Awake ()
+	{
+		GameObject.Find ("Continue Game Button").SetActive (GameState.saveFileExists ());
+	}
 
-    //Takes an int representing the index of the scene in the build settings
-    public void LoadScene(int level)
-    {
-        Application.LoadLevel(level);
-    }
+	public void NewGame ()
+	{
+		GameState.newGame = true;
 
-    public void exitGame()
-    {
-        Application.Quit();
-    }
+		//Takes an int representing the index of the scene in the build settings
+		Application.LoadLevel (1);
+	}
+
+	public void ContinueGame ()
+	{
+		SaveFile saved = GameState.load ();
+		Application.LoadLevel (saved.getLoadLevel ());
+	}
+
+	public void exitGame ()
+	{
+		Application.Quit ();
+	}
 }
