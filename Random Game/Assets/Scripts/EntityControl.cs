@@ -8,6 +8,7 @@ public class EntityControl : MonoBehaviour
 	// When an object is right up against another one, if we don't pad a little space, the raycasts
 	//	along the side will return immediately with the other object.
 	private const float padding = 0.01f;
+	private const int mask = 1 | 1 << 8;
 
 
 	protected float yVel = 0;
@@ -25,9 +26,9 @@ public class EntityControl : MonoBehaviour
 			pos = transform.position;
 		}
 		// Check 3 positions. Is the middle touching? Are either of the edges touching.
-		return Physics2D.Raycast (pos.Value, dir, maxDist, 1).collider != null
-			|| Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, maxDist, 1).collider != null
-			|| Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, maxDist, 1).collider != null;
+		return Physics2D.Raycast (pos.Value, dir, maxDist, mask).collider != null
+			|| Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, maxDist, mask).collider != null
+			|| Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, maxDist, mask).collider != null;
 	}
 	
 	bool hittingInY (Vector2 dir)
@@ -66,9 +67,9 @@ public class EntityControl : MonoBehaviour
 		}
 
 		// Ray cast three times along the edge
-		RaycastHit2D left = Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, Mathf.Infinity, 1);
-		RaycastHit2D mid = Physics2D.Raycast (new Vector2 (pos.Value.x, pos.Value.y), dir, Mathf.Infinity, 1);
-		RaycastHit2D right = Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, Mathf.Infinity, 1);
+		RaycastHit2D left = Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, Mathf.Infinity, mask);
+		RaycastHit2D mid = Physics2D.Raycast (new Vector2 (pos.Value.x, pos.Value.y), dir, Mathf.Infinity, mask);
+		RaycastHit2D right = Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, Mathf.Infinity, mask);
 
 		// You want the minimum, because of ledges and overhangs and stuff.
 		return Mathf.Min (left.distance, mid.distance, right.distance);
@@ -160,13 +161,13 @@ public class EntityControl : MonoBehaviour
 
 		// If it has been slowed, then it might have hit a slope
 		if (setXVel != xVel && (yVel <= 0 || hittingInY (Vector2.down))) {
-			Vector2 dir = new Vector2 (Mathf.Sign (xVel), 0);
+			float dirSign = Mathf.Sign (xVel);
+			Vector2 dir = new Vector2 (dirSign, 0);
 			float slopeAngle = getSlopeAngle (dir);
 			if (slopeAngle != 0 && slopeAngle < 70 * Mathf.Deg2Rad) {
-				Debug.Log ("Sloping?");
 
 				setXVel = xVel;
-				setYVel = Mathf.Tan (slopeAngle) * xVel;
+				setYVel = dirSign * Mathf.Tan (slopeAngle) * xVel;
 
 				// Uncomment these to make the player move proportionally slower uphill based on the angle
 				// setXVel = Mathf.Cos (slopeAngle) * xVel;
