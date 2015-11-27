@@ -85,7 +85,7 @@ public class EntityControl : MonoBehaviour
 		return Mathf.Max (0, distToThing (dir, 0, height / 2 - padding) - width / 2);
 	}
 
-	float getSlopeAngle (Vector2 dir)
+	protected virtual float getSlopeAngle (Vector2 dir)
 	{
 		// Gonna raycast from the bottom
 		Vector2 bottomStep = new Vector2 (transform.position.x, transform.position.y - height / 2);

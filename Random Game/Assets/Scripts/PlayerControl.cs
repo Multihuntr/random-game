@@ -40,6 +40,11 @@ public class PlayerControl : EntityControl
 			jumping = false;
 		}
 	}
+
+	protected override float getSlopeAngle (Vector2 dir)
+	{
+		return jumping ? 0 : base.getSlopeAngle (dir);
+	}
 	
 	void Update ()
 	{
