@@ -10,8 +10,10 @@ public class PlayerControl : EntityControl
 	public float runSpd;
 	public float jumpSpd;
 	public float jumpTriggerHeight;
+	public float jumpExtendTime;
 
 	private bool jumpHeld;
+	private bool jumping = false;
     
 	void Start ()
 	{
@@ -19,6 +21,19 @@ public class PlayerControl : EntityControl
 		jumpHeld = false;
 		width = mesh.bounds.size.x; // These values might not be static in final production
 		height = mesh.bounds.size.y;
+	}
+
+	IEnumerator Jump ()
+	{
+		if (!jumping) {
+			jumping = true;
+			float startTime = Time.realtimeSinceStartup;
+			while (Time.realtimeSinceStartup - startTime < jumpExtendTime && jumpHeld) {
+				yVel = jumpSpd;
+				yield return null;
+			}
+			jumping = false;
+		}
 	}
 	
 	void Update ()
@@ -31,10 +46,10 @@ public class PlayerControl : EntityControl
 
 		// Add Jumping Movement
 		if (Input.GetAxis ("Vertical") > 0) {
-			if (!jumpHeld && distToYThing (Vector2.down) < jumpTriggerHeight) {
-				m = new Vector2 (m.x, jumpSpd);
-			}
 			jumpHeld = true;
+			if (distToYThing (Vector2.down) < jumpTriggerHeight) {
+				StartCoroutine ("Jump");
+			}
 		} else {
 			jumpHeld = false;
 		}
