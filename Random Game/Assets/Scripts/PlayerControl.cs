@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerControl : EntityControl
@@ -22,7 +23,6 @@ public class PlayerControl : EntityControl
 	
 	void Update ()
 	{
-
 		// Calculate initial movement
 		float xVel = Input.GetAxis ("Horizontal") != 0 ? Input.GetAxis ("Horizontal") * runSpd : 0;
 
@@ -54,5 +54,10 @@ public class PlayerControl : EntityControl
 		if (!GameState.newGame) {
 			transform.position = GameState.currentSave.getLoadPos ();
 		}
+	}
+
+	public void injured ()
+	{
+		// play injury animation
 	}
 }
