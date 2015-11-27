@@ -38,6 +38,11 @@ public class PlayerControl : EntityControl
 	
 	void Update ()
 	{
+		// Check Pause
+		if (Input.GetButtonDown ("Pause")) {
+			GameState.togglePause ();
+		}
+
 		// Calculate initial movement
 		float xVel = Input.GetAxis ("Horizontal") != 0 ? Input.GetAxis ("Horizontal") * runSpd : 0;
 

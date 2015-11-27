@@ -128,31 +128,25 @@ public class EntityControl : MonoBehaviour
 	
 	protected float newYVel (float yVel)
 	{
-        if (!GameState.paused)
-        {
-            // First apply gravity
-            yVel -= grav;
+		if (!GameState.paused) {
+			// First apply gravity
+			yVel -= grav;
 
-            // Find out which way we're gonna go
-            float dirSign = Mathf.Sign(yVel);
-            Vector2 dir = new Vector2(0, dirSign);
+			// Find out which way we're gonna go
+			float dirSign = Mathf.Sign (yVel);
+			Vector2 dir = new Vector2 (0, dirSign);
 
-            // If there's a wall in that direction, stop.
-            // Else if we're gonna hit something during this frame, move up against it this frame
-            //		(then next frame, the first branch will execute)
-            if (hittingInY(dir))
-            {
-                yVel = 0;
-            }
-            else if (willHitInY(dir, yVel))
-            {
-                yVel = dirSign * distToYThing(dir) / Time.deltaTime;
-            }
-        }
-        else
-        {
-            yVel = 0;
-        }
+			// If there's a wall in that direction, stop.
+			// Else if we're gonna hit something during this frame, move up against it this frame
+			//		(then next frame, the first branch will execute)
+			if (hittingInY (dir)) {
+				yVel = 0;
+			} else if (willHitInY (dir, yVel)) {
+				yVel = dirSign * distToYThing (dir) / Time.deltaTime;
+			}
+		} else {
+			yVel = 0;
+		}
 
 		return yVel;
 	}

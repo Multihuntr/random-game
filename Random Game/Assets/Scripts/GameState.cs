@@ -6,14 +6,14 @@ using System.IO;
 public class GameState : MonoBehaviour
 {
 	public static Checkpoint checkpoint;
-    public static bool paused = false;
+	public static bool paused = false;
 	public static string savePath = Application.persistentDataPath + "/savedGame";
 	public static bool newGame = false;
 	public static SaveFile currentSave;
 
 	public static void save (Checkpoint cp)
 	{
-        // Update active checkpoint
+		// Update active checkpoint
 		if (checkpoint != null && checkpoint != cp) {
 			checkpoint.reset ();
 		}
@@ -51,27 +51,15 @@ public class GameState : MonoBehaviour
 	{
 		return File.Exists (savePath);
 	}
-	
-	// Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Pause"))
-        {
-            togglePause();
-        }
-    }
 
-    public static void togglePause()
-    {
-        if (!paused)
-        {
-            paused = true;
-            Time.timeScale = 0.0F;
-        }
-        else
-        {
-            paused = false;
-            Time.timeScale = 1.0F;
-        }
-    }
+	public static void togglePause ()
+	{
+		if (!paused) {
+			paused = true;
+			Time.timeScale = 0.0F;
+		} else {
+			paused = false;
+			Time.timeScale = 1.0F;
+		}
+	}
 }
