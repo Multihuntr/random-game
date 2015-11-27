@@ -12,6 +12,7 @@ public class PlayerControl : EntityControl
 	public float jumpTriggerHeight;
 	public float jumpExtendTime;
 
+	public int facing = 1;
 	private bool jumpHeld;
 	private bool jumping = false;
 
@@ -80,8 +81,10 @@ public class PlayerControl : EntityControl
 		// Facing Direction
 		if (xVel > 0) {
 			transform.localScale = faceLeft;
+			facing = 1;
 		} else if (xVel < 0) {
 			transform.localScale = faceRight;
+			facing = -1;
 		}
 	}
 
