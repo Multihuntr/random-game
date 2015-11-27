@@ -95,8 +95,9 @@ public class EntityControl : MonoBehaviour
 		// It raycasts a distance for which the angle would have to be less than 1 degree not to reach.
 		RaycastHit2D bottomStepHit = Physics2D.Raycast (bottomStep, dir, width / 2 + 0.01f, 1 << 8);
 		RaycastHit2D oneStepUpHit = Physics2D.Raycast (oneStepUp, dir, width / 2 + 6.01f, 1 << 8);
+		RaycastHit2D wallCheck = Physics2D.Raycast (oneStepUp, dir, width / 2 + 6.01f);
 
-		if (oneStepUpHit.distance == 0) {
+		if (oneStepUpHit.distance == 0 || oneStepUpHit.collider != wallCheck.collider) {
 			return 90;
 		}
 
