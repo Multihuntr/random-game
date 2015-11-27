@@ -276,8 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpd: 10
-  jumpSpd: 18
+  jumpSpd: 12
   jumpTriggerHeight: .0799999982
+  jumpExtendTime: .300000012
 --- !u!1 &243886926 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 8ab08ed66cdc83844973916924fd5f3a, type: 3}
