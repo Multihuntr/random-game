@@ -12,6 +12,10 @@ public class PlayerControl : EntityControl
 	public float jumpTriggerHeight;
 	public float jumpExtendTime;
 
+	public int facing = 1;
+
+	private float xVel;
+
 	private bool jumpHeld;
 	private bool jumping = false;
 
@@ -54,7 +58,7 @@ public class PlayerControl : EntityControl
 		}
 
 		// Calculate initial movement
-		float xVel = Input.GetAxis ("Horizontal") != 0 ? Input.GetAxis ("Horizontal") * runSpd : 0;
+		xVel = Mathf.Lerp (xVel, Input.GetAxis ("Horizontal") * runSpd, 0.3f);
 
 		Vector2 m = calcMoveIncSlope (xVel);
 
@@ -75,13 +79,17 @@ public class PlayerControl : EntityControl
 		float y = transform.position.y;
 
 		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
+		xVel = m.x;
 		yVel = m.y;
+
 
 		// Facing Direction
 		if (xVel > 0) {
 			transform.localScale = faceLeft;
+			facing = 1;
 		} else if (xVel < 0) {
 			transform.localScale = faceRight;
+			facing = -1;
 		}
 	}
 
