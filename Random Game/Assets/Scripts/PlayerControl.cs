@@ -14,6 +14,9 @@ public class PlayerControl : EntityControl
 
 	private bool jumpHeld;
 	private bool jumping = false;
+
+	private Vector3 faceLeft;
+	private Vector3 faceRight;
     
 	void Start ()
 	{
@@ -21,6 +24,8 @@ public class PlayerControl : EntityControl
 		jumpHeld = false;
 		width = mesh.bounds.size.x; // These values might not be static in final production
 		height = mesh.bounds.size.y;
+		faceLeft = transform.localScale;
+		faceRight = new Vector3 (-faceLeft.x, faceLeft.y, faceLeft.z);
 	}
 
 	IEnumerator Jump ()
@@ -67,6 +72,12 @@ public class PlayerControl : EntityControl
 		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
 		yVel = m.y;
 
+		// Facing Direction
+		if (xVel > 0) {
+			transform.localScale = faceLeft;
+		} else if (xVel < 0) {
+			transform.localScale = faceRight;
+		}
 	}
 
 	void OnLevelWasLoaded (int level)
