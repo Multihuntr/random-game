@@ -25,8 +25,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 454628}
-  - 114: {fileID: 11436694}
   - 61: {fileID: 6132700}
+  - 114: {fileID: 11450674}
   m_Layer: 2
   m_Name: TestScuttle
   m_TagString: Enemy
@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.01000023, y: 6.51000023, z: -2.0703125}
+  m_LocalPosition: {x: -3.75999999, y: 1.53999996, z: -2.0703125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 424632}
@@ -103,7 +103,7 @@ BoxCollider2D:
   m_Offset: {x: -.00108385086, y: 0}
   serializedVersion: 2
   m_Size: {x: .824438214, y: .284750134}
---- !u!114 &11436694
+--- !u!114 &11450674
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,10 +111,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 110874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 244d053bad34c2b43a65449decd85177, type: 3}
+  m_Script: {fileID: 11500000, guid: 15938bf3d3151914792b69964f9f0a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 500
+  damage: 1000
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
