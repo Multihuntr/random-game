@@ -82,15 +82,9 @@ public class PlayerControl : EntityControl
             }
 
             // Apply movement
-            float x = transform.position.x;
-            float y = transform.position.y;
-
-            transform.position = new Vector3(x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
-            yVel = m.y;
-
-            transform.position = new Vector3(x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
-            xVel = m.x;
-            yVel = m.y;
+			updatePos (m.x, m.y);
+			xVel = m.x;
+			yVel = m.y;
 
 
             // Facing Direction
@@ -106,7 +100,6 @@ public class PlayerControl : EntityControl
             }
         }
     }
-
 
 	void OnLevelWasLoaded (int level)
 	{

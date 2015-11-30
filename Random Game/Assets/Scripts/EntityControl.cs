@@ -9,6 +9,7 @@ public class EntityControl : MonoBehaviour
 	//	along the side will return immediately with the other object.
 	private const float padding = 0.01f;
 	private const int mask = 1 | 1 << 8;
+	private const float maxFallSpd = 12.0f;
 
 
 	protected float yVel = 0;
@@ -20,15 +21,14 @@ public class EntityControl : MonoBehaviour
 	//	It is intended to work with either xOffset or yOffset to be 0
 	// The 'dir' is the direction to check, the maxDist is how far away still counts, and
 	//	the two Offsets are how far the edges are from the center on the face.
-	bool touching (Vector2 dir, float maxDist, float xOffset, float yOffset, Vector3? pos = null)
+	bool touching (Vector2 dir, float maxDist, float xOffset, float yOffset)
 	{
-		if (pos == null) {
-			pos = transform.position;
-		}
+		Vector3 pos = transform.position;
+
 		// Check 3 positions. Is the middle touching? Are either of the edges touching.
-		return Physics2D.Raycast (pos.Value, dir, maxDist, mask).collider != null
-			|| Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, maxDist, mask).collider != null
-			|| Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, maxDist, mask).collider != null;
+		return Physics2D.Raycast (pos, dir, maxDist, mask).collider != null
+			|| Physics2D.Raycast (new Vector2 (pos.x + xOffset, pos.y + yOffset), dir, maxDist, mask).collider != null
+			|| Physics2D.Raycast (new Vector2 (pos.x - xOffset, pos.y - yOffset), dir, maxDist, mask).collider != null;
 	}
 	
 	bool hittingInY (Vector2 dir)
@@ -50,26 +50,16 @@ public class EntityControl : MonoBehaviour
 	{
 		return touching (dir, width / 2 + Mathf.Abs (vel) * Time.deltaTime, 0, height / 2 - padding);
 	}
-
-	bool hittingSlope (Vector2 dir)
-	{
-		Vector3 areaOfInterest = new Vector3 (transform.position.x
-		                                      , transform.position.y - height / 2 + 0.1f
-		                                      , transform.position.z);
-		return touching (dir, width / 2, 0, 0, areaOfInterest);
-	}
 	
 	// This raycasts from the centre of the player, so the distance returned is from the centre
-	float distToThing (Vector2 dir, float xOffset, float yOffset = 0, Vector3? pos = null)
+	float distToThing (Vector2 dir, float xOffset, float yOffset = 0)
 	{
-		if (pos == null) {
-			pos = transform.position;
-		}
+		Vector3 pos = transform.position;
 
 		// Ray cast three times along the edge
-		RaycastHit2D left = Physics2D.Raycast (new Vector2 (pos.Value.x - xOffset, pos.Value.y - yOffset), dir, Mathf.Infinity, mask);
-		RaycastHit2D mid = Physics2D.Raycast (new Vector2 (pos.Value.x, pos.Value.y), dir, Mathf.Infinity, mask);
-		RaycastHit2D right = Physics2D.Raycast (new Vector2 (pos.Value.x + xOffset, pos.Value.y + yOffset), dir, Mathf.Infinity, mask);
+		RaycastHit2D left = Physics2D.Raycast (new Vector2 (pos.x - xOffset, pos.y - yOffset), dir, Mathf.Infinity, mask);
+		RaycastHit2D mid = Physics2D.Raycast (new Vector2 (pos.x, pos.y), dir, Mathf.Infinity, mask);
+		RaycastHit2D right = Physics2D.Raycast (new Vector2 (pos.x + xOffset, pos.y + yOffset), dir, Mathf.Infinity, mask);
 
 		// You want the minimum, because of ledges and overhangs and stuff.
 		return Mathf.Min (left.distance, mid.distance, right.distance);
@@ -133,6 +123,7 @@ public class EntityControl : MonoBehaviour
 		if (!GameState.paused) {
 			// First apply gravity
 			yVel -= grav;
+			yVel = Mathf.Sign (yVel) * Mathf.Min (Mathf.Abs (yVel), maxFallSpd);
 
 			// Find out which way we're gonna go
 			float dirSign = Mathf.Sign (yVel);
@@ -179,5 +170,13 @@ public class EntityControl : MonoBehaviour
 
 		return new Vector2 (setXVel, setYVel);
 
+	}
+
+	protected void updatePos (float xVel, float yVel)
+	{
+		float x = transform.position.x;
+		float y = transform.position.y;
+		float z = transform.position.z;
+		transform.position = new Vector3 (x + xVel * Time.deltaTime, y + yVel * Time.deltaTime, z);
 	}
 }
