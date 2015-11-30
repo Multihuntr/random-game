@@ -35,6 +35,7 @@ public class PlayerControl : EntityControl
 	IEnumerator Jump ()
 	{
 		if (!jumping) {
+			jumpHeld = true;
 			jumping = true;
 			float startTime = Time.realtimeSinceStartup;
 			while (Time.realtimeSinceStartup - startTime < jumpExtendTime && jumpHeld) {
@@ -50,56 +51,43 @@ public class PlayerControl : EntityControl
 		return jumping ? 0 : base.getSlopeAngle (dir);
 	}
 
-    void Update()
-    {
-        //Check to see if the player is in a cutscene. Different controls if they are.
-        if (!GameState.inCutscene)
-        {
-            // Check Pause
-            if (Input.GetButtonDown("Pause"))
-            {
-                GameState.togglePause();
-            }
+	void Update ()
+	{
+		//Check to see if the player is in a cutscene. Different controls if they are.
+		if (!GameState.inCutscene) {
+			// Check Pause
+			if (Input.GetButtonDown ("Pause")) {
+				GameState.togglePause ();
+			}
 
-            // Calculate initial movement
-            xVel = Mathf.Lerp(xVel, Input.GetAxis("Horizontal") * runSpd, 0.3f);
+			// Calculate initial movement
+			xVel = Mathf.Lerp (xVel, Input.GetAxis ("Horizontal") * runSpd, 0.3f);
 
-            Vector2 m = calcMoveIncSlope(xVel);
+			Vector2 m = calcMoveIncSlope (xVel);
 
 
-            // Add Jumping Movement
-            if (Input.GetAxis("Vertical") > 0)
-            {
-                jumpHeld = true;
-                if (distToYThing(Vector2.down) < jumpTriggerHeight)
-                {
-                    StartCoroutine("Jump");
-                }
-            }
-            else
-            {
-                jumpHeld = false;
-            }
+			// Add Jumping Movement
+			if (!jumpHeld && Input.GetAxis ("Vertical") > 0 && distToYThing (Vector2.down) < jumpTriggerHeight) {
+				StartCoroutine ("Jump");
+			}
+			jumpHeld = Input.GetAxis ("Vertical") > 0;
 
-            // Apply movement
+			// Apply movement
 			updatePos (m.x, m.y);
 			xVel = m.x;
 			yVel = m.y;
 
 
-            // Facing Direction
-            if (xVel > 0)
-            {
-                transform.localScale = faceLeft;
-                facing = 1;
-            }
-            else if (xVel < 0)
-            {
-                transform.localScale = faceRight;
-                facing = -1;
-            }
-        }
-    }
+			// Facing Direction
+			if (xVel > 0) {
+				transform.localScale = faceLeft;
+				facing = 1;
+			} else if (xVel < 0) {
+				transform.localScale = faceRight;
+				facing = -1;
+			}
+		}
+	}
 
 	void OnLevelWasLoaded (int level)
 	{
