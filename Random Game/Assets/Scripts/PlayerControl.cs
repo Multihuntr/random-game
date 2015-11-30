@@ -38,35 +38,47 @@ public class PlayerControl : EntityControl
 	
 	void Update ()
 	{
-		// Check Pause
-		if (Input.GetButtonDown ("Pause")) {
-			GameState.togglePause ();
-		}
+        //Check to see if the player is in a cutscene. Different controls if they are.
+        if (!GameState.inCutscene)
+        {
+            // Check Pause
+            if (Input.GetButtonDown("Pause"))
+            {
+                Inventory.toggleInventory();
+            }
 
-		// Calculate initial movement
-		float xVel = Input.GetAxis ("Horizontal") != 0 ? Input.GetAxis ("Horizontal") * runSpd : 0;
+            // Calculate initial movement
+            float xVel = Input.GetAxis("Horizontal") != 0 ? Input.GetAxis("Horizontal") * runSpd : 0;
 
-		Vector2 m = calcMoveIncSlope (xVel);
-
-
-		// Add Jumping Movement
-		if (Input.GetAxis ("Vertical") > 0) {
-			jumpHeld = true;
-			if (distToYThing (Vector2.down) < jumpTriggerHeight) {
-				StartCoroutine ("Jump");
-			}
-		} else {
-			jumpHeld = false;
-		}
+            Vector2 m = calcMoveIncSlope(xVel);
 
 
-		// Apply movement
-		float x = transform.position.x;
-		float y = transform.position.y;
+            // Add Jumping Movement
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                jumpHeld = true;
+                if (distToYThing(Vector2.down) < jumpTriggerHeight)
+                {
+                    StartCoroutine("Jump");
+                }
+            }
+            else
+            {
+                jumpHeld = false;
+            }
 
-		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
-		yVel = m.y;
 
+            // Apply movement
+            float x = transform.position.x;
+            float y = transform.position.y;
+
+            transform.position = new Vector3(x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
+            yVel = m.y;
+        }
+        else
+        {
+            //Check cutscene stuff
+        }
 	}
 
 	void OnLevelWasLoaded (int level)

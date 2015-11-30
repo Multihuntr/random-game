@@ -1,0 +1,8 @@
+Cubeman:cubeman:Wow. Nice jump
+Cubeman:cubeman:I didn't expect anyone to find me up in the corner.
+Cubeman:cubeman:It's awfully lonely up here.
+Triangleguy:triangleguy:Except, you know, I'm stuck here with you.
+Triangleguy:triangleguy:How tedious.
+Player::Uh, right. I think I'll leave you two alone.
+Triangleguy:triangleguy:Wait, don't leave me here with Cubeman!
+Player::Buh bye now.

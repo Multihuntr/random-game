@@ -1,0 +1,3 @@
+Cubeman:cubeman:Hello, I am a cube.
+Triangleguy:triangleguy:What, really?
+Cubeman:cubeman:Yep. Totally.
