@@ -75,10 +75,7 @@ public class PlayerControl : EntityControl
 
 
 		// Apply movement
-		float x = transform.position.x;
-		float y = transform.position.y;
-
-		transform.position = new Vector3 (x + m.x * Time.deltaTime, y + m.y * Time.deltaTime, 0);
+		updatePos (m.x, m.y);
 		xVel = m.x;
 		yVel = m.y;
 
