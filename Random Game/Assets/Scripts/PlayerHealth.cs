@@ -17,13 +17,14 @@ public class PlayerHealth : Health
 		controller = GetComponent<PlayerControl> ();
 	}
 
-	protected override void takeDamage (int amount)
+	public override void takeDamage (int amount)
 	{
 		currHealth -= amount;
 		if (currHealth > 0) {
 			healthSlider.value = currHealth;
 			controller.injured ();
 		} else {
+			currHealth = 0;
 			// You have died
 		}
 	}
