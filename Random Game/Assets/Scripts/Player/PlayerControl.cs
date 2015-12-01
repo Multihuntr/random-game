@@ -54,7 +54,7 @@ public class PlayerControl : EntityControl
 		if (!GameState.inCutscene) {
 			// Check Pause
 			if (Input.GetButtonDown ("Pause")) {
-				GameState.togglePause ();
+				Inventory.toggleInventory();
 			}
 
 			// Calculate movement
@@ -69,6 +69,11 @@ public class PlayerControl : EntityControl
 				transform.localScale = faceRight;
 				facing = -1;
 			}
+			
+			if (Input.GetButtonDown("Fire1"))
+            {
+                Sword.attack();
+            }
 		}
 	}
 
