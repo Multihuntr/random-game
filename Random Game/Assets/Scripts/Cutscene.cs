@@ -28,7 +28,7 @@ public class Cutscene : MonoBehaviour
 		if (other.gameObject.tag == "Player" && hasActivated == -1) {
 			//Turn on cutscene ui, disable other ui
 			cutsceneView.enabled = true;
-			GameObject.Find ("HealthBar").GetComponent<Canvas> ().enabled = false;
+			GameObject.Find ("HUD").GetComponent<Canvas> ().enabled = false;
 
 			//Pause game and switch to cutscene state
 			GameState.togglePause ();
@@ -55,7 +55,7 @@ public class Cutscene : MonoBehaviour
 		} else {
 			//end cutscene
 			cutsceneView.enabled = false;
-			GameObject.Find ("HealthBar").GetComponent<Canvas> ().enabled = true;
+			GameObject.Find ("HUD").GetComponent<Canvas> ().enabled = true;
 
 			GameState.togglePause ();
 			GameState.inCutscene = false;
@@ -68,7 +68,7 @@ public class Cutscene : MonoBehaviour
 	{
 		if (hasActivated == 0) {
 			//Check if user swaps to next dialogue frame
-			if (Input.GetButtonDown ("Fire1")) {
+			if (Input.GetButtonDown ("ActionBtn")) {
 				this.advanceText ();
 			}
 		}
