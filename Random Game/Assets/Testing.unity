@@ -480,7 +480,7 @@ Transform:
   - {fileID: 419278249}
   - {fileID: 1794057603}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1001 &382985371
 Prefab:
   m_ObjectHideFlags: 0
@@ -815,11 +815,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22347180, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_Enabled

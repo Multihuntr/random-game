@@ -18,9 +18,6 @@ public class PlayerControl : EntityControl
 
 	private bool jumpHeld;
 	private bool jumping = false;
-
-	private Vector3 faceLeft;
-	private Vector3 faceRight;
     
 	void Start ()
 	{

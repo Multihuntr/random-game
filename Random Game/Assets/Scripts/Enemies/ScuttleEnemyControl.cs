@@ -4,7 +4,7 @@ using System.Collections;
 public class ScuttleEnemyControl : EnemyControl
 {
 	const float mvSpd = 3.0f;
-	int dir = 1;
+	int dir = 1; // direction the enemy is moving
 
 	void Start ()
 	{
@@ -13,18 +13,29 @@ public class ScuttleEnemyControl : EnemyControl
 		Mesh mesh = GetComponentInChildren<MeshFilter> ().mesh;
 		width = mesh.bounds.size.x * child.localScale.x;
 		height = mesh.bounds.size.y * child.localScale.y;
+		faceLeft = transform.localScale;
+		faceRight = new Vector3 (-faceLeft.x, faceLeft.y, faceLeft.z);
 	}
 
 	void Update ()
 	{
 		float xVel = newXVel (dir * mvSpd);
 		
-		if (xVel == 0) {
+		if (xVel == 0 || pokingOut ()) {
 			dir = -dir;
+			transform.localScale = dir > 0 ? faceRight : faceLeft;
 		}
 
 		yVel = newYVel (yVel);
 
 		updatePos (xVel, yVel);
+	}
+
+	bool pokingOut ()
+	{
+		Vector2 leadingFoot = new Vector2 (transform.position.x + dir * width / 2
+		                                  , transform.position.y - height / 2);
+		RaycastHit2D hit = Physics2D.Raycast (leadingFoot, Vector2.down, height / 2);
+		return hit.distance > 0.01f;
 	}
 }

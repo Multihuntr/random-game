@@ -16,6 +16,9 @@ public class EntityControl : MonoBehaviour
 	protected float width;
 	protected float height;
 
+	protected Vector3 faceLeft;
+	protected Vector3 faceRight;
+
 
 	// A function that will tell you if a face is touching something
 	//	It is intended to work with either xOffset or yOffset to be 0
