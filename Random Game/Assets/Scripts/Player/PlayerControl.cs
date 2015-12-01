@@ -70,7 +70,7 @@ public class PlayerControl : EntityControl
 				facing = -1;
 			}
 			
-			if (Input.GetButtonDown("Fire1"))
+			if (Input.GetButtonDown("ActionBtn"))
             {
                 Sword.attack();
             }
