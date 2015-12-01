@@ -60,22 +60,8 @@ public class PlayerControl : EntityControl
 				GameState.togglePause ();
 			}
 
-			// Calculate initial movement
-			xVel = Mathf.Lerp (xVel, Input.GetAxis ("Horizontal") * runSpd, 0.3f);
-
-			Vector2 m = calcMoveIncSlope (xVel);
-
-
-			// Add Jumping Movement
-			if (!jumpHeld && Input.GetAxis ("Vertical") > 0 && distToYThing (Vector2.down) < jumpTriggerHeight) {
-				StartCoroutine ("Jump");
-			}
-			jumpHeld = Input.GetAxis ("Vertical") > 0;
-
-			// Apply movement
-			updatePos (m.x, m.y);
-			xVel = m.x;
-			yVel = m.y;
+			// Calculate movement
+			move ();
 
 
 			// Facing Direction
@@ -94,6 +80,42 @@ public class PlayerControl : EntityControl
 		if (!GameState.newGame) {
 			transform.position = GameState.currentSave.getLoadPos ();
 		}
+	}
+
+	void move ()
+	{
+		// Determine desired xVel based on input
+		xVel = Mathf.Lerp (xVel, Input.GetAxis ("Horizontal") * runSpd, 0.3f);
+
+		// Detect any collisions in the x-direction
+		float setXVel = newXVel (xVel);
+
+		// If it has been slowed, then it might have hit a slope
+		bool sloped = false;
+		if (setXVel != xVel && (yVel <= 0 || hittingInY (Vector2.down))) {
+			float setYVel = 0;
+			sloped = calcSlopeAdjustment (xVel, ref setYVel);
+			if (sloped) {
+				yVel = setYVel;
+				setXVel = xVel;
+			}
+		}
+
+		// Move along the x-axis
+		updatePos (setXVel, 0);
+		xVel = setXVel;
+
+		// Before we determine if the player is jumping, we check for collisions (ignoring this if we're on a slope)
+		yVel = sloped ? yVel : newYVel (yVel);
+		// If jumping we'll just set yVel to something else anyway
+		if (!jumpHeld && Input.GetAxis ("Vertical") > 0 && distToYThing (Vector2.down) < jumpTriggerHeight) {
+			StartCoroutine ("Jump");
+		}
+		jumpHeld = Input.GetAxis ("Vertical") > 0;
+		
+		
+		// Apply y movement
+		updatePos (0, yVel);
 	}
 
 	public void injured ()
