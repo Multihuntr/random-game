@@ -1237,6 +1237,19 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 111488, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_PrefabInternal: {fileID: 955291501}
+--- !u!114 &1490102995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1490102994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b7d963dd11363488d801420ae3bd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stanceChangeBurstObj: {fileID: 112038, guid: 5b402f97413d3eb48925b21c97407b10, type: 2}
+  stanceText: {fileID: 1124485179}
 --- !u!1001 &1504218807
 Prefab:
   m_ObjectHideFlags: 0
