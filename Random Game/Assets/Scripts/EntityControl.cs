@@ -31,7 +31,7 @@ public class EntityControl : MonoBehaviour
 			|| Physics2D.Raycast (new Vector2 (pos.x - xOffset, pos.y - yOffset), dir, maxDist, mask).collider != null;
 	}
 	
-	bool hittingInY (Vector2 dir)
+	protected bool hittingInY (Vector2 dir)
 	{
 		return touching (dir, height / 2, width / 2 - padding, 0);
 	}
@@ -79,20 +79,20 @@ public class EntityControl : MonoBehaviour
 	{
 		// Gonna raycast from the bottom
 		Vector2 bottomStep = new Vector2 (transform.position.x, transform.position.y - height / 2);
-		// And a known distance upwards
-		Vector2 oneStepUp = new Vector2 (bottomStep.x, bottomStep.y + 0.1f);
+		// And two known distances upwards
+		Vector2 oneStepUp = new Vector2 (bottomStep.x, bottomStep.y + padding);
 
 		// It raycasts a distance for which the angle would have to be less than 1 degree not to reach.
 		RaycastHit2D bottomStepHit = Physics2D.Raycast (bottomStep, dir, width / 2 + 0.01f, 1 << 8);
-		RaycastHit2D oneStepUpHit = Physics2D.Raycast (oneStepUp, dir, width / 2 + 6.01f, 1 << 8);
-		RaycastHit2D wallCheck = Physics2D.Raycast (oneStepUp, dir, width / 2 + 6.01f);
+		RaycastHit2D oneStepUpHit = Physics2D.Raycast (oneStepUp, dir, width / 2 + 0.61f, 1 << 8);
+		RaycastHit2D wallCheck = Physics2D.Raycast (oneStepUp, dir, width / 2 + 0.61f);
 
 		if (oneStepUpHit.distance == 0 || oneStepUpHit.collider != wallCheck.collider) {
 			return 90;
 		}
 
 		// Good ol' trigonometry will tell us the angle.
-		return Mathf.Atan2 (0.1f, oneStepUpHit.distance - bottomStepHit.distance);
+		return Mathf.Atan2 (padding, oneStepUpHit.distance - bottomStepHit.distance);
 	}
 
 	protected float newXVel (float xVel)
@@ -145,30 +145,26 @@ public class EntityControl : MonoBehaviour
 	}
 
 	// For if the entity can climb slopes
-	protected Vector2 calcMoveIncSlope (float xVel)
+	protected bool calcSlopeAdjustment (float xVel, ref float setYVel)
 	{
-		float setXVel = newXVel (xVel);
-		float setYVel = newYVel (yVel);
 
+		float dirSign = Mathf.Sign (xVel);
+		Vector2 dir = new Vector2 (dirSign, 0);
 
-		// If it has been slowed, then it might have hit a slope
-		if (setXVel != xVel && (yVel <= 0 || hittingInY (Vector2.down))) {
-			float dirSign = Mathf.Sign (xVel);
-			Vector2 dir = new Vector2 (dirSign, 0);
-			float slopeAngle = getSlopeAngle (dir);
-			if (slopeAngle != 0 && slopeAngle < 70 * Mathf.Deg2Rad) {
+		float slopeAngle = getSlopeAngle (dir);
 
-				setXVel = xVel;
-				setYVel = dirSign * Mathf.Tan (slopeAngle) * xVel;
+		// There should be no adjustment for a slope angle on flat ground
+		if (slopeAngle != 0 && slopeAngle < 70 * Mathf.Deg2Rad) {
 
-				// Uncomment these to make the player move proportionally slower uphill based on the angle
-				// setXVel = Mathf.Cos (slopeAngle) * xVel;
-				// setYVel = Mathf.Sin (slopeAngle) * xVel;
-				
-			}
+			setYVel = dirSign * Mathf.Tan (slopeAngle) * xVel;
+
+			// These values could be used to move proportionally slower uphill based on the angle
+			// setXVel = Mathf.Cos (slopeAngle) * xVel;
+			// setYVel = Mathf.Sin (slopeAngle) * xVel;
+			return true;
 		}
 
-		return new Vector2 (setXVel, setYVel);
+		return false;
 
 	}
 
