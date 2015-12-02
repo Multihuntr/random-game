@@ -17,6 +17,13 @@ public class PlayerHealth : Health
 		healthSlider.value = maxHealth;
 	}
 
+	public override void heal (int amount)
+	{
+		base.heal (amount);
+		healthSlider.value = currHealth;
+		Debug.Log ("Healing! : " + currHealth);
+	}
+
 	protected override IEnumerator playInjured ()
 	{
 		invincible = true;

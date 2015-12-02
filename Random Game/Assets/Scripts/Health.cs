@@ -15,6 +15,16 @@ public abstract class Health : MonoBehaviour
 		Init ();
 	}
 
+	public virtual void heal (int amount)
+	{
+		currHealth = Mathf.Min (currHealth + amount, maxHealth);
+	}
+
+	public virtual void fullHeal ()
+	{
+		heal (maxHealth);
+	}
+
 	public virtual void takeDamage (Vector2 source, int amount)
 	{
 		if (invincible) {
