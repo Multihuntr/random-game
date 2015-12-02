@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ScuttleEnemyControl : EnemyControl
 {
-	const float mvSpd = 3.0f;
 	int dir = 1; // direction the enemy is moving
 
 	void Start ()
@@ -15,13 +14,15 @@ public class ScuttleEnemyControl : EnemyControl
 		height = mesh.bounds.size.y * child.localScale.y;
 		faceLeft = transform.localScale;
 		faceRight = new Vector3 (-faceLeft.x, faceLeft.y, faceLeft.z);
+
+		myHealth = GetComponent<EnemyHealth> ();
 	}
 
 	void Update ()
 	{
-		float xVel = newXVel (dir * mvSpd);
+		xVel = newXVel (dir * runSpd);
 		
-		if (xVel == 0 || pokingOut ()) {
+		if (Mathf.Abs (xVel) < 0.01f || pokingOut ()) {
 			dir = -dir;
 			transform.localScale = dir > 0 ? faceRight : faceLeft;
 		}

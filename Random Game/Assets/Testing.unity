@@ -618,11 +618,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22347180, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_Enabled
@@ -778,11 +778,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 36.6599998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.57999992
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.z
@@ -812,23 +812,25 @@ Prefab:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1429973113}
+    - target: {fileID: 11460880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: stanceText
+      value: 
+      objectReference: {fileID: 1124485179}
+    - target: {fileID: 163938, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: m_TagString
+      value: WeaponAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436312, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: knockbackTime
+      value: .200000003
+      objectReference: {fileID: 0}
     - target: {fileID: 11436312, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: stdKnockback.x
-      value: 40
+      value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 11436312, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
-      propertyPath: stdKnockback.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
-      propertyPath: invincibilityFrames
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
-      propertyPath: dmgFlashes
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6518880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+    - {fileID: 6418832, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1058401536
@@ -1253,19 +1255,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 111488, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_PrefabInternal: {fileID: 955291501}
---- !u!114 &1490102995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1490102994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b7d963dd11363488d801420ae3bd12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stanceChangeBurstObj: {fileID: 112038, guid: 5b402f97413d3eb48925b21c97407b10, type: 2}
-  stanceText: {fileID: 1124485179}
 --- !u!1001 &1504218807
 Prefab:
   m_ObjectHideFlags: 0
@@ -1476,6 +1465,39 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a24d9fce03ae79247bb3cb6873237cdc, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1714826934 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 163938, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+  m_PrefabInternal: {fileID: 955291501}
+--- !u!61 &1714826935
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714826934}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -2.38418579e-07, y: 9.53674316e-07}
+  serializedVersion: 2
+  m_Size: {x: 1.00000012, y: 1.00000048}
+--- !u!50 &1714826936
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714826934}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1727993881
 GameObject:
   m_ObjectHideFlags: 0

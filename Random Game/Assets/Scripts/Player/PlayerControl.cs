@@ -7,11 +7,9 @@ public class PlayerControl : EntityControl
 
 	private Mesh mesh;
 
-	public float runSpd;
 	public float jumpSpd;
 	public float jumpTriggerHeight;
 	public float jumpExtendTime;
-	public Vector2 stdKnockback;
 
 	public int facing = 1;
 
@@ -116,10 +114,5 @@ public class PlayerControl : EntityControl
 		
 		// Apply y movement
 		updatePos (0, yVel);
-	}
-
-	public void dmgKnockback (Vector2 from)
-	{
-		dmgKnockback (from, stdKnockback);
 	}
 }
