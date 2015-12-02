@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerControl : EntityControl
 {
 
+	private Stance stance;
 	private Mesh mesh;
 
 	public float jumpSpd;
@@ -15,9 +16,11 @@ public class PlayerControl : EntityControl
 
 	private bool jumpHeld;
 	private bool jumping = false;
+	private bool cycled = false;
     
 	void Start ()
 	{
+		stance = GetComponent<Stance> ();
 		mesh = GetComponent<MeshFilter> ().mesh;
 		jumpHeld = false;
 		width = mesh.bounds.size.x; // These values might not be static in final production
@@ -49,7 +52,7 @@ public class PlayerControl : EntityControl
 	{
 		//Check to see if the player is in a cutscene. Different controls if they are.
 		if (!GameState.inCutscene) {
-			// Check Pause
+			// Pause
 			if (Input.GetButtonDown ("Pause")) {
 				Inventory.toggleInventory ();
 			}
@@ -59,16 +62,27 @@ public class PlayerControl : EntityControl
 
 
 			// Facing Direction
-			if (xVel > 0) {
+			if (Input.GetAxis ("Horizontal") > 0) {
 				transform.localScale = faceLeft;
 				facing = 1;
-			} else if (xVel < 0) {
+			} else if (Input.GetAxis ("Horizontal") < 0) {
 				transform.localScale = faceRight;
 				facing = -1;
 			}
-			
+
+			// Cycle Stances
+			if (!cycled) {
+				if (Input.GetAxis ("CycleStance") > 0) {
+					stance.setNext ();
+				} else if (Input.GetAxis ("CycleStance") < 0) {
+					stance.setPrev ();
+				}
+			}
+			cycled = (Input.GetAxis ("CycleStance") != 0);
+
+			// Attacking
 			if (Input.GetButtonDown ("ActionBtn")) {
-				Sword.attack ();
+				stance.attack ();
 			}
 		}
 	}

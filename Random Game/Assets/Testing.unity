@@ -778,11 +778,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 36.9799995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 9.01000023
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.z
@@ -808,14 +808,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
-      propertyPath: HealthBar
-      value: 
-      objectReference: {fileID: 1429973113}
     - target: {fileID: 11460880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: stanceText
       value: 
       objectReference: {fileID: 1124485179}
+    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: HealthBar
+      value: 
+      objectReference: {fileID: 1429973113}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_IsPrefabParent: 0
