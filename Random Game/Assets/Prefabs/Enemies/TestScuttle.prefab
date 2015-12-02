@@ -27,6 +27,7 @@ GameObject:
   - 4: {fileID: 454628}
   - 61: {fileID: 6132700}
   - 114: {fileID: 11450674}
+  - 114: {fileID: 11484072}
   m_Layer: 2
   m_Name: TestScuttle
   m_TagString: Enemy
@@ -114,14 +115,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15938bf3d3151914792b69964f9f0a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runSpd: 3
+  stdKnockback: {x: 8, y: 5}
+  knockbackTime: .300000012
   damage: 1000
+--- !u!114 &11484072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9acc874a4356b246921fd60e7a5b0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  invincibilityTime: .400000006
+  deathPiece: {fileID: 194082, guid: a59e8e754836f2f4da749873ab9d9a82, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: invincibilityTime
+      value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stdKnockback.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stdKnockback.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: runSpd
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockbackTime
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: deathPiece
+      value: 
+      objectReference: {fileID: 194082, guid: a59e8e754836f2f4da749873ab9d9a82, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110874}

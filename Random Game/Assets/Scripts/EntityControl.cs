@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EntityControl : MonoBehaviour
 {
+	public float runSpd;
+	public Vector2 stdKnockback;
+	public float knockbackTime;
 
 	private const float grav = 1f;
 	// When an object is right up against another one, if we don't pad a little space, the raycasts
@@ -11,7 +14,10 @@ public class EntityControl : MonoBehaviour
 	private const int mask = 1 | 1 << 8;
 	private const float maxFallSpd = 12.0f;
 
+	private float xKnockbackVel = 0;
+	private float knockbackTimeCounter = 0;
 
+	protected float xVel = 0;
 	protected float yVel = 0;
 	protected float width;
 	protected float height;
@@ -100,9 +106,10 @@ public class EntityControl : MonoBehaviour
 
 	protected float newXVel (float xVel)
 	{
-		// Optimisation  - If we're not trying to move, we don't need to do anything.
-		if (xVel == 0) {
-			return 0;
+		// If the entity is to be knocked back, overwrite the xVel
+		if (knockbackTimeCounter > 0) {
+			xVel = xKnockbackVel;
+			knockbackTimeCounter -= Time.deltaTime;
 		}
 
 		// Which way are we trying to move?
@@ -168,7 +175,6 @@ public class EntityControl : MonoBehaviour
 		}
 
 		return false;
-
 	}
 
 	protected void updatePos (float xVel, float yVel)
@@ -177,5 +183,17 @@ public class EntityControl : MonoBehaviour
 		float y = transform.position.y;
 		float z = transform.position.z;
 		transform.position = new Vector3 (x + xVel * Time.deltaTime, y + yVel * Time.deltaTime, z);
+	}
+
+	public void dmgKnockback (Vector2 from)
+	{
+		dmgKnockback (from, stdKnockback);
+	}
+
+	public void dmgKnockback (Vector2 from, Vector2 amount)
+	{
+		knockbackTimeCounter = knockbackTime;
+		xKnockbackVel = Mathf.Sign (transform.position.x - from.x) * amount.x;
+		yVel += amount.y;
 	}
 }

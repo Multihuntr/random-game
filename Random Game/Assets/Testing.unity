@@ -574,7 +574,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22460938, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 22460938, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -618,11 +618,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22347180, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_Enabled
@@ -778,11 +778,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .00999999978
+      value: 36.9799995
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.07999992
+      value: 9.01000023
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.z
@@ -812,6 +812,10 @@ Prefab:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1429973113}
+    - target: {fileID: 11460880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: stanceText
+      value: 
+      objectReference: {fileID: 1124485179}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_IsPrefabParent: 0
@@ -1237,19 +1241,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 111488, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_PrefabInternal: {fileID: 955291501}
---- !u!114 &1490102995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1490102994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b7d963dd11363488d801420ae3bd12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stanceChangeBurstObj: {fileID: 112038, guid: 5b402f97413d3eb48925b21c97407b10, type: 2}
-  stanceText: {fileID: 1124485179}
 --- !u!1001 &1504218807
 Prefab:
   m_ObjectHideFlags: 0
