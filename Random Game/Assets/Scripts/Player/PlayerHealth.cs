@@ -35,4 +35,9 @@ public class PlayerHealth : Health
 
 		invincible = false;
 	}
+
+	protected override void onDeath ()
+	{
+		Application.LoadLevel (Application.loadedLevel);
+	}
 }

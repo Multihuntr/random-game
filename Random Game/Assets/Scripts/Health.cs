@@ -27,7 +27,7 @@ public abstract class Health : MonoBehaviour
 			StartCoroutine ("playInjured");
 		} else {
 			currHealth = 0;
-			// You have died
+			onDeath ();
 		}
 	}
 
@@ -37,6 +37,11 @@ public abstract class Health : MonoBehaviour
 	}
 
 	protected abstract IEnumerator playInjured ();
+
+	protected virtual void onDeath ()
+	{
+		Destroy (this.gameObject);
+	}
 	
 	protected void Init ()
 	{

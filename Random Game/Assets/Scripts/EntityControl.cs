@@ -106,11 +106,6 @@ public class EntityControl : MonoBehaviour
 
 	protected float newXVel (float xVel)
 	{
-		// Optimisation  - If we're not trying to move, we don't need to do anything.
-		if (xVel == 0) {
-			return 0;
-		}
-
 		// If the entity is to be knocked back, overwrite the xVel
 		if (knockbackTimeCounter > 0) {
 			xVel = xKnockbackVel;
