@@ -11,10 +11,9 @@ public class PlayerControl : EntityControl
 	public float jumpSpd;
 	public float jumpTriggerHeight;
 	public float jumpExtendTime;
+	public Vector2 stdKnockback;
 
 	public int facing = 1;
-
-	private float xVel;
 
 	private bool jumpHeld;
 	private bool jumping = false;
@@ -54,7 +53,7 @@ public class PlayerControl : EntityControl
 		if (!GameState.inCutscene) {
 			// Check Pause
 			if (Input.GetButtonDown ("Pause")) {
-				Inventory.toggleInventory();
+				Inventory.toggleInventory ();
 			}
 
 			// Calculate movement
@@ -70,10 +69,9 @@ public class PlayerControl : EntityControl
 				facing = -1;
 			}
 			
-			if (Input.GetButtonDown("ActionBtn"))
-            {
-                Sword.attack();
-            }
+			if (Input.GetButtonDown ("ActionBtn")) {
+				Sword.attack ();
+			}
 		}
 	}
 
@@ -120,8 +118,8 @@ public class PlayerControl : EntityControl
 		updatePos (0, yVel);
 	}
 
-	public void injured ()
+	public void dmgKnockback (Vector2 from)
 	{
-		// play injury animation
+		dmgKnockback (from, stdKnockback);
 	}
 }

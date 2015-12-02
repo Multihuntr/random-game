@@ -778,11 +778,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .00999999978
+      value: 36.6599998
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.07999992
+      value: 7.57999992
       objectReference: {fileID: 0}
     - target: {fileID: 433360, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: m_LocalPosition.z
@@ -812,6 +812,22 @@ Prefab:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1429973113}
+    - target: {fileID: 11436312, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: stdKnockback.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436312, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: stdKnockback.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: invincibilityFrames
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: dmgFlashes
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_IsPrefabParent: 0

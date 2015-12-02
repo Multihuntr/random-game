@@ -11,7 +11,7 @@ public class EntityControl : MonoBehaviour
 	private const int mask = 1 | 1 << 8;
 	private const float maxFallSpd = 12.0f;
 
-
+	protected float xVel = 0;
 	protected float yVel = 0;
 	protected float width;
 	protected float height;
@@ -177,5 +177,11 @@ public class EntityControl : MonoBehaviour
 		float y = transform.position.y;
 		float z = transform.position.z;
 		transform.position = new Vector3 (x + xVel * Time.deltaTime, y + yVel * Time.deltaTime, z);
+	}
+
+	public virtual void dmgKnockback (Vector2 from, Vector2 amount)
+	{
+		xVel += Mathf.Sign (transform.position.x - from.x) * amount.x;
+		yVel += amount.y;
 	}
 }

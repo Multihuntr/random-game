@@ -8,7 +8,7 @@ public class EnemyControl : EntityControl
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.gameObject.tag == "Player") {
-			other.GetComponent<PlayerHealth> ().takeDamage (damage);
+			other.GetComponent<PlayerHealth> ().takeDamage (transform.position, damage);
 		}
 	}
 
