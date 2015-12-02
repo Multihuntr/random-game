@@ -7,7 +7,7 @@ public class EnemyControl : EntityControl
 
 	protected Health myHealth;
 
-	void OnTriggerEnter2D (Collider2D other)
+	void OnTriggerStay2D (Collider2D other)
 	{
 		if (other.gameObject.tag == "Player") {
 			other.GetComponent<PlayerHealth> ().takeDamage (transform.position, damage);
