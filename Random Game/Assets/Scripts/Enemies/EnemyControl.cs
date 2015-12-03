@@ -4,16 +4,17 @@ using System.Collections;
 public class EnemyControl : EntityControl
 {
 	public int damage;
+	public Vector2 knockbackModOnHit;
 
 	protected Health myHealth;
 
 	void OnTriggerStay2D (Collider2D other)
 	{
 		if (other.gameObject.tag == "Player") {
-			other.GetComponent<PlayerHealth> ().takeDamage (transform.position, damage);
+			other.GetComponent<PlayerHealth> ().takeDamage (transform.position, damage, knockbackModOnHit);
 		} else if (other.gameObject.tag == "WeaponAttack") {
-			myHealth.takeDamage (other.gameObject.transform.position
-			                     , other.transform.parent.GetComponent<Weapon> ().getDamage ());
+			Weapon w = other.transform.parent.GetComponent<Weapon> ();
+			myHealth.takeDamage (other.gameObject.transform.position, w.getDamage (), w.getKnockback ());
 		}
 	}
 

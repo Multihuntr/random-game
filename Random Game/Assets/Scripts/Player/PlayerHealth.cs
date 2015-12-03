@@ -21,7 +21,6 @@ public class PlayerHealth : Health
 	{
 		base.heal (amount);
 		healthSlider.value = currHealth;
-		Debug.Log ("Healing! : " + currHealth);
 	}
 
 	protected override IEnumerator playInjured ()
