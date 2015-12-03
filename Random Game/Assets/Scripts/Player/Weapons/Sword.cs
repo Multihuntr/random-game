@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Sword : Weapon
 {
-
 	private static GameObject swordBlade;
 	private Transform swordTransform;
 
@@ -14,6 +13,7 @@ public class Sword : Weapon
 	void Start ()
 	{
 		damage = 10;
+		knockback = 0.6f * Vector2.one;
 		swordTransform = GetComponent<Transform> ().transform;
 		swordBlade = GameObject.Find ("SwordBlade");
 		swordBlade.SetActive (false);

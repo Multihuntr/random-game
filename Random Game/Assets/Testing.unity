@@ -618,11 +618,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22347180, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_Enabled
@@ -808,14 +808,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 11460880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
-      propertyPath: stanceText
-      value: 
-      objectReference: {fileID: 1124485179}
     - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1429973113}
+    - target: {fileID: 11460880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: stanceText
+      value: 
+      objectReference: {fileID: 1124485179}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_IsPrefabParent: 0

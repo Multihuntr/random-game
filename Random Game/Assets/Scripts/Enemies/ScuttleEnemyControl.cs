@@ -22,7 +22,7 @@ public class ScuttleEnemyControl : EnemyControl
 	{
 		xVel = newXVel (dir * runSpd);
 		
-		if (Mathf.Abs (xVel) < 0.01f || pokingOut ()) {
+		if (Mathf.Abs (xVel) < 0.01f || (hittingInY (Vector2.down) && pokingOut ())) {
 			dir = -dir;
 			transform.localScale = dir > 0 ? faceRight : faceLeft;
 		}

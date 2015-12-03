@@ -187,13 +187,13 @@ public class EntityControl : MonoBehaviour
 
 	public void dmgKnockback (Vector2 from)
 	{
-		dmgKnockback (from, stdKnockback);
+		dmgKnockback (from, Vector2.one);
 	}
 
 	public void dmgKnockback (Vector2 from, Vector2 amount)
 	{
 		knockbackTimeCounter = knockbackTime;
-		xKnockbackVel = Mathf.Sign (transform.position.x - from.x) * amount.x;
-		yVel += amount.y;
+		xKnockbackVel = Mathf.Sign (transform.position.x - from.x) * stdKnockback.x * amount.x;
+		yVel += stdKnockback.y * amount.y;
 	}
 }

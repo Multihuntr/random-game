@@ -119,6 +119,7 @@ MonoBehaviour:
   stdKnockback: {x: 8, y: 5}
   knockbackTime: .300000012
   damage: 1000
+  knockbackModOnHit: {x: .5, y: 1}
 --- !u!114 &11484072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +173,22 @@ Prefab:
       propertyPath: deathPiece
       value: 
       objectReference: {fileID: 194082, guid: a59e8e754836f2f4da749873ab9d9a82, type: 2}
+    - target: {fileID: 0}
+      propertyPath: knockbackOnHit.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockbackOnHit.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockbackModOnHit.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockbackModOnHit.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110874}

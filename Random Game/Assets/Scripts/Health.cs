@@ -25,15 +25,15 @@ public abstract class Health : MonoBehaviour
 		heal (maxHealth);
 	}
 
-	public virtual void takeDamage (Vector2 source, int amount)
+	public virtual void takeDamage (Vector2 source, int amount, Vector2 knockback)
 	{
+		wasHit (source, knockback);
 		if (invincible) {
 			return; // HAHAAAA! Fools! You can't hurt me!
 		}
 
 		currHealth -= amount;
 		if (currHealth > 0) {
-			tookDamage (source);
 			StartCoroutine ("playInjured");
 		} else {
 			currHealth = 0;
@@ -41,9 +41,9 @@ public abstract class Health : MonoBehaviour
 		}
 	}
 
-	protected virtual void tookDamage (Vector2 source)
+	protected virtual void wasHit (Vector2 source, Vector2 knockback)
 	{
-		GetComponent<EntityControl> ().dmgKnockback (source);
+		GetComponent<EntityControl> ().dmgKnockback (source, knockback);
 	}
 
 	protected abstract IEnumerator playInjured ();

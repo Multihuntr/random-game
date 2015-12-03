@@ -62,12 +62,14 @@ public class PlayerControl : EntityControl
 
 
 			// Facing Direction
-			if (Input.GetAxis ("Horizontal") > 0) {
-				transform.localScale = faceLeft;
-				facing = 1;
-			} else if (Input.GetAxis ("Horizontal") < 0) {
-				transform.localScale = faceRight;
-				facing = -1;
+			if (!Weapon.attacking) {
+				if (Input.GetAxis ("Horizontal") > 0) {
+					transform.localScale = faceLeft;
+					facing = 1;
+				} else if (Input.GetAxis ("Horizontal") < 0) {
+					transform.localScale = faceRight;
+					facing = -1;
+				}
 			}
 
 			// Cycle Stances
