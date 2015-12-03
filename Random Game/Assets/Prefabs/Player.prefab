@@ -31,6 +31,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 496266}
   - 61: {fileID: 6100512}
+  - 114: {fileID: 11409370}
   m_Layer: 2
   m_Name: Parts
   m_TagString: WeaponAttack
@@ -411,7 +412,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: .0207316875, y: 0}
   serializedVersion: 2
-  m_Size: {x: .195605993, y: 1}
+  m_Size: {x: .195605993, y: .949999988}
 --- !u!61 &6130966
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -446,7 +447,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143594}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 94e7f06bd6e5df84886b76fe2c75193d, type: 3}
   m_Controller: {fileID: 9100000, guid: 9a3b5998c21dc744eb949fdde0441e3c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -455,6 +456,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11409370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9dd1b91919d7474dbe025a7aab43d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11433834
 MonoBehaviour:
   m_ObjectHideFlags: 1

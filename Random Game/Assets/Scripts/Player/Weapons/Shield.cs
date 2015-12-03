@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Shield : Weapon
 {
 	static GameObject shieldParts;
-	static Animator animator;
 	static float shieldTime = 1.5f;
 
 	void Start ()
@@ -12,7 +11,6 @@ public class Shield : Weapon
 		damage = 0;
 		knockback = 1.2f * Vector2.one;
 		shieldParts = transform.GetChild (0).gameObject;
-		animator = GetComponentInChildren<Animator> ();
 		shieldParts.SetActive (false);
 	}
 
@@ -28,13 +26,6 @@ public class Shield : Weapon
 
 			attacking = false;
 			shieldParts.SetActive (false);
-		}
-	}
-
-	void OnTriggerStay2D (Collider2D other)
-	{
-		if (other.gameObject.CompareTag ("Enemy")) {
-			animator.SetTrigger ("Hit");
 		}
 	}
 }
