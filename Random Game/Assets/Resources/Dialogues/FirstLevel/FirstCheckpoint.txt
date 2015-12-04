@@ -1,0 +1,4 @@
+Minion:cubeman:That felt... delicious?
+Trickster:trickster:Must be something left behind by your master.
+Knight:knight:Or maybe these just occur naturally here.
+Trickster:trickster:Regardless, it seems useful.

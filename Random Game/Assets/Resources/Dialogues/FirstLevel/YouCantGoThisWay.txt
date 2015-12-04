@@ -1,0 +1,5 @@
+Minion:cubeman:No. I can't go back until I have what I need.
+Beserker:beserker:That's right! I smell things I can cleave the other way!
+Knight:knight:That's hardly a need.
+Beserker:beserker:Speak for yourself, coward.
+Knight:knight:...

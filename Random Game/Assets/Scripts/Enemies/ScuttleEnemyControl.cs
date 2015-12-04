@@ -22,7 +22,7 @@ public class ScuttleEnemyControl : EnemyControl
 	{
 		xVel = newXVel (dir * runSpd);
 		
-		if (Mathf.Abs (xVel) < 0.01f || (hittingInY (Vector2.down) && pokingOut ())) {
+		if (Mathf.Abs (xVel) < 0.01f || (willHitInY (Vector2.down, yVel) && pokingOut ())) {
 			dir = -dir;
 			transform.localScale = dir > 0 ? faceRight : faceLeft;
 		}
@@ -36,7 +36,7 @@ public class ScuttleEnemyControl : EnemyControl
 	{
 		Vector2 leadingFoot = new Vector2 (transform.position.x + dir * width / 2
 		                                  , transform.position.y - height / 2);
-		RaycastHit2D hit = Physics2D.Raycast (leadingFoot, Vector2.down, height / 2);
-		return hit.distance > 0.01f;
+		RaycastHit2D hit = Physics2D.Raycast (leadingFoot, Vector2.down, width);
+		return hit.distance > 0.01f || hit.collider == null;
 	}
 }
