@@ -98,6 +98,7 @@ GameObject:
   - 124: {fileID: 184621969}
   - 81: {fileID: 184621968}
   - 114: {fileID: 184621973}
+  - 114: {fileID: 184621974}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -185,6 +186,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1490102994}
+--- !u!114 &184621974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 184621967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527c3db26d267454ebd4eccdeb5d881c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &243886926 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 8ab08ed66cdc83844973916924fd5f3a, type: 3}
@@ -618,11 +630,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22479602, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22347180, guid: 3b33cfd24a8f9de4693a1a6b6481f8fb, type: 2}
       propertyPath: m_Enabled
@@ -808,14 +820,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
-      propertyPath: HealthBar
-      value: 
-      objectReference: {fileID: 1429973113}
     - target: {fileID: 11460880, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
       propertyPath: stanceText
       value: 
       objectReference: {fileID: 1124485179}
+    - target: {fileID: 11446770, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: HealthBar
+      value: 
+      objectReference: {fileID: 1429973113}
+    - target: {fileID: 11436312, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
+      propertyPath: jumpSpd
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba8f7ce3d409994499c91245bc4f3235, type: 2}
   m_IsPrefabParent: 0
