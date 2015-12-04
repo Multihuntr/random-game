@@ -10,7 +10,7 @@ public class GameState : MonoBehaviour
 	public static string savePath = Application.persistentDataPath + "/savedGame";
 	public static bool newGame = false;
 	public static SaveFile currentSave;
-    public static bool inCutscene = false;
+	public static bool inCutscene = false;
 
 	public static void save (Checkpoint cp)
 	{

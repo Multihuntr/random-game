@@ -8,7 +8,7 @@ public class Exit : MonoBehaviour
 	void OnTriggerEnter2D (Collider2D coll)
 	{
 		if (coll.gameObject.CompareTag ("Player")) {
-			Application.LoadLevel (next);
+			Camera.main.GetComponentInChildren<Fader> ().fadeOut (next);
 		}
 	}
 }
