@@ -12,6 +12,6 @@ public class FollowPlayer : MonoBehaviour
 		Vector3 target = new Vector3 (player.transform.position.x + player.GetComponent<PlayerControl> ().facing * 2
 		                                  , player.transform.position.y
 		                                  , transform.position.z);
-		transform.position = Vector3.Lerp (transform.position, target, 0.05f);
+		transform.position = Vector3.Lerp (transform.position, target, 4 * Time.deltaTime);
 	}
 }

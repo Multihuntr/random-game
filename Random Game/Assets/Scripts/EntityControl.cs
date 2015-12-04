@@ -3,15 +3,21 @@ using System.Collections;
 
 public class EntityControl : MonoBehaviour
 {
+	public float runSpd;
+	public Vector2 stdKnockback;
+	public float knockbackTime;
 
-	private const float grav = 1f;
+	private const float grav = 45.0f;
 	// When an object is right up against another one, if we don't pad a little space, the raycasts
 	//	along the side will return immediately with the other object.
 	private const float padding = 0.01f;
 	private const int mask = 1 | 1 << 8;
 	private const float maxFallSpd = 12.0f;
 
+	private float xKnockbackVel = 0;
+	private float knockbackTimeCounter = 0;
 
+	protected float xVel = 0;
 	protected float yVel = 0;
 	protected float width;
 	protected float height;
@@ -100,9 +106,10 @@ public class EntityControl : MonoBehaviour
 
 	protected float newXVel (float xVel)
 	{
-		// Optimisation  - If we're not trying to move, we don't need to do anything.
-		if (xVel == 0) {
-			return 0;
+		// If the entity is to be knocked back, overwrite the xVel
+		if (knockbackTimeCounter > 0) {
+			xVel = xKnockbackVel;
+			knockbackTimeCounter -= Time.deltaTime;
 		}
 
 		// Which way are we trying to move?
@@ -123,25 +130,21 @@ public class EntityControl : MonoBehaviour
 	
 	protected float newYVel (float yVel)
 	{
-		if (!GameState.paused) {
-			// First apply gravity
-			yVel -= grav;
-			yVel = Mathf.Sign (yVel) * Mathf.Min (Mathf.Abs (yVel), maxFallSpd);
+		// First apply gravity
+		yVel -= grav * Time.deltaTime;
+		yVel = Mathf.Sign (yVel) * Mathf.Min (Mathf.Abs (yVel), maxFallSpd);
 
-			// Find out which way we're gonna go
-			float dirSign = Mathf.Sign (yVel);
-			Vector2 dir = new Vector2 (0, dirSign);
+		// Find out which way we're gonna go
+		float dirSign = Mathf.Sign (yVel);
+		Vector2 dir = new Vector2 (0, dirSign);
 
-			// If there's a wall in that direction, stop.
-			// Else if we're gonna hit something during this frame, move up against it this frame
-			//		(then next frame, the first branch will execute)
-			if (hittingInY (dir)) {
-				yVel = 0;
-			} else if (willHitInY (dir, yVel)) {
-				yVel = dirSign * distToYThing (dir) / Time.deltaTime;
-			}
-		} else {
+		// If there's a wall in that direction, stop.
+		// Else if we're gonna hit something during this frame, move up against it this frame
+		//		(then next frame, the first branch will execute)
+		if (hittingInY (dir)) {
 			yVel = 0;
+		} else if (willHitInY (dir, yVel)) {
+			yVel = dirSign * distToYThing (dir) / Time.deltaTime;
 		}
 
 		return yVel;
@@ -168,7 +171,6 @@ public class EntityControl : MonoBehaviour
 		}
 
 		return false;
-
 	}
 
 	protected void updatePos (float xVel, float yVel)
@@ -177,5 +179,17 @@ public class EntityControl : MonoBehaviour
 		float y = transform.position.y;
 		float z = transform.position.z;
 		transform.position = new Vector3 (x + xVel * Time.deltaTime, y + yVel * Time.deltaTime, z);
+	}
+
+	public void dmgKnockback (Vector2 from)
+	{
+		dmgKnockback (from, Vector2.one);
+	}
+
+	public void dmgKnockback (Vector2 from, Vector2 amount)
+	{
+		knockbackTimeCounter = knockbackTime;
+		xKnockbackVel = Mathf.Sign (transform.position.x - from.x) * stdKnockback.x * amount.x;
+		yVel += stdKnockback.y * amount.y;
 	}
 }

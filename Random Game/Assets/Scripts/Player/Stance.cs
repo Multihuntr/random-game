@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using System.Collections;
+using System;
 
 public class Stance : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class Stance : MonoBehaviour
 	public GameObject stanceChangeBurstObj;
 	public Text stanceText;
 
-	bool cycled = false;
+	private Weapon weapon;
 
 	void Start ()
 	{
@@ -28,28 +28,37 @@ public class Stance : MonoBehaviour
 		setStance (beserker);
 	}
 
-	void Update ()
-	{
-		if (!cycled) {
-			if (Input.GetAxis ("CycleStance") > 0) {
-				setStance (currStance.next);
-			} else if (Input.GetAxis ("CycleStance") < 0) {
-				setStance (currStance.prev);
-			}
-		}
-		cycled = (Input.GetAxis ("CycleStance") != 0);
-	}
-
 	void setStance (BaseStance toSet)
 	{
 		currStance = toSet;
 		stanceText.color = currStance.colour;
 		stanceText.text = currStance.text;
+		weapon = ((Weapon)GetComponentInChildren (currStance.weapon));
+	}
 
+	void burst ()
+	{
 		// Look at the pretty explosions
 		GameObject aBurst = (GameObject)(Instantiate (stanceChangeBurstObj, transform.position, Quaternion.identity));
 		StanceChangeBurst scBurst = aBurst.GetComponent<StanceChangeBurst> ();
 		scBurst.burst (currStance.colour);
+	}
+
+	public void setNext ()
+	{
+		setStance (currStance.next);
+		burst ();
+	}
+
+	public void setPrev ()
+	{
+		setStance (currStance.prev);
+		burst ();
+	}
+
+	public void attack ()
+	{
+		weapon.StartCoroutine ("attack");
 	}
 
 	class BaseStance
@@ -58,6 +67,7 @@ public class Stance : MonoBehaviour
 		public string text;
 		public BaseStance next;
 		public BaseStance prev;
+		public Type weapon;
 	}
 
 	class BeserkerStance:BaseStance
@@ -66,6 +76,7 @@ public class Stance : MonoBehaviour
 		{
 			colour = new Color (0.8823f, 0.1216f, 0);
 			text = "Beserker";
+			weapon = typeof(Sword);
 		}
 	}
 
@@ -75,6 +86,7 @@ public class Stance : MonoBehaviour
 		{
 			colour = new Color (0.2549f, 0.6588f, 0.9098f);
 			text = "Knight";
+			weapon = typeof(Shield);
 		}
 	}
 
@@ -84,6 +96,7 @@ public class Stance : MonoBehaviour
 		{
 			colour = new Color (0.1725f, 0.7216f, 0.2706f);
 			text = "Trickster";
+			weapon = typeof(Bow);
 		}
 	}
 }
