@@ -39,17 +39,17 @@ public class EntityControl : MonoBehaviour
 		return touching (dir, height / 2, width / 2 - padding, 0);
 	}
 	
-	bool willHitInY (Vector2 dir, float vel)
+	protected bool willHitInY (Vector2 dir, float vel)
 	{
 		return touching (dir, height / 2 + Mathf.Abs (vel) * Time.deltaTime, width / 2 - padding, 0);
 	}
 	
-	bool hittingWall (Vector2 dir)
+	protected bool hittingWall (Vector2 dir)
 	{
 		return touching (dir, width / 2, 0, height / 2 - padding);
 	}
 	
-	bool willHitWall (Vector2 dir, float vel)
+	protected bool willHitWall (Vector2 dir, float vel)
 	{
 		return touching (dir, width / 2 + Mathf.Abs (vel) * Time.deltaTime, 0, height / 2 - padding);
 	}
