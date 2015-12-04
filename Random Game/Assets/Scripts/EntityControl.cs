@@ -45,7 +45,7 @@ public class EntityControl : MonoBehaviour
 		return touching (dir, height / 2, width / 2 - padding, 0);
 	}
 	
-	bool willHitInY (Vector2 dir, float vel)
+	protected bool willHitInY (Vector2 dir, float vel)
 	{
 		return touching (dir, height / 2 + Mathf.Abs (vel) * Time.deltaTime, width / 2 - padding, 0);
 	}
